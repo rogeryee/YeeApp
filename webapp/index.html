@@ -8,29 +8,34 @@
 <body>
 	<div ng-view ></div>
 
-	<!-- Dojo Configuration -->
+	<script src="scripts/dtkSDK/requirejs/require.js"></script>
+	<script src="scripts/dtkSDK/angular/angular.js"></script>
 	<script>
-	dojoConfig = {
-            async: true,
-            baseUrl: 'scripts',
-            gfxRenderer: "svg", // svg gets priority
-            parseOnLoad: true,
-            packages: [
-                { name: "dojo", location: 'dtkSDK/dojo' },
-                { name: "dijit", location: 'dtkSDK/dijit' },
-                { name: "app", location: "app" }
-            ]
-        };
-    </script>
-    <script src='scripts/dtkSDK/dojo/dojo.js'></script>
-    <script src='scripts/dtkSDK/angular/angular.js'></script>
-    <script>        
-		require(['app/ApplicationController','dojo/dom','dojo/domReady!'],
-			function (ApplicationControllerModule,dom) {
-				angular.module('MyApp',[]);
-				angular.bootstrap(document, ['MyApp']);    
-				var applicationController = new ApplicationControllerModule.ApplicationController();
+	
+		// Configure RequireJS
+		require.config({
+		  paths: {
+		    angular: 'scripts/dtkSDK/angular/angular',
+		    domReady: 'scripts/dtkSDK/requirejs/domReady'
+		  },
+		  shim: {
+		    angular: {
+		      exports: 'angular'
+		    }
+		  }
 		});
+		
+		// Launch Application
+		require(['domReady','scripts/app/ApplicationController','scripts/dtkSDK/angular/angular-ui-router'],
+			function (domReady, ApplicationControllerModule) {
+		  		'use strict';
+		  		domReady(function() {
+		  			var yeeApp = angular.module("YeeApp",["ui.router"]);
+		      		angular.bootstrap(document, ['YeeApp']);     
+		      		var applicationController = new ApplicationControllerModule.ApplicationController(yeeApp);
+		    	});
+		  	}
+		);
 	</script>
 
 </body>
