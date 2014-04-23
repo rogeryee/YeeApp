@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
+<head>
+  <title>Yee App</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="resources/styles/bootstrap.min.css">
+</head>
+<body>
+	<div ng-view ></div>
+
+	<!-- Dojo Configuration -->
+	<script>
+	dojoConfig = {
+            async: true,
+            baseUrl: 'scripts',
+            gfxRenderer: "svg", // svg gets priority
+            parseOnLoad: true,
+            packages: [
+                { name: "dojo", location: 'dtkSDK/dojo' },
+                { name: "dijit", location: 'dtkSDK/dijit' },
+                { name: "app", location: "app" }
+            ]
+        };
+    </script>
+    <script src='scripts/dtkSDK/dojo/dojo.js'></script>
+    <script src='scripts/dtkSDK/angular/angular.js'></script>
+    <script>        
+		require(['app/ApplicationController','dojo/dom','dojo/domReady!'],
+			function (ApplicationControllerModule,dom) {
+				angular.module('MyApp',[]);
+				angular.bootstrap(document, ['MyApp']);    
+				var applicationController = new ApplicationControllerModule.ApplicationController();
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=10" />
+	<title>Test Page</title>
+</head>
+<body>
+	<div id="title">This is a Simple test page!<div>
+	
+	<!-- Dojo Configuration Start -->
+	<script>
+	dojoConfig = {
+            async: true,
+            baseUrl: 'scripts',
+            gfxRenderer: "svg", // svg gets priority
+            parseOnLoad: true,
+            packages: [
+                { name: "dojo", location: 'dtkSDK/dojo' },
+                { name: "dijit", location: 'dtkSDK/dijit' },
+                { name: "app", location: "app" }
+            ]
+        };
+    </script>
+    <script src='Scripts/dtkSDK/dojo/dojo.js'></script>
+    <!-- Dojo Configuration End -->
+    
+    <script>        
+        function launchApp(){
+            require(['app/test/test','dojo/dom','dojo/domReady!'],
+                function (TestModule,dom,fx) {
+                	var test = new TestModule.TestClass('Roger');
+                	
+                	test.setText('title', 'Just a Test!');
+                });
+        }
+        
+        launchApp();
+	</script>
+		
+</body>
+</html>
