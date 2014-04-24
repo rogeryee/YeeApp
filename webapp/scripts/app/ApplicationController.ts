@@ -11,17 +11,14 @@ export class ApplicationController
 		appModuel.config(($stateProvider, $urlRouterProvider) => {  
       
 		  // For any unmatched url, send to /route1
-	      $urlRouterProvider.otherwise("/route1");
+	      $urlRouterProvider.otherwise("/login");
 	      
 	      $stateProvider
-	        .state('route1', {
-	            url: "/route1",
-	            template: "<h1>Route 1</h1>"
+	        .state('login', {
+	            url: "/login",
+	            templateUrl: "views/login.html"
+//				template:"<h1>Here we go!!!</h1>"
 	        })
-	        .state('route2', {
-	            url: "/route2",
-	            template: "<h1>Route 2</h1>"
-	        });
 	    });	
 	}
 	
