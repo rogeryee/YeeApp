@@ -2,22 +2,25 @@
 "use strict";
 define(["require", "exports"], function(require, exports) {
     var ApplicationController = (function () {
-        function ApplicationController(application) {
-            this.application = application;
+        function ApplicationController(appModuel) {
+            this.appModuel = appModuel;
             console.log("Create ApplicationController");
 
-            application.config(function ($stateProvider, $urlRouterProvider) {
+            appModuel.config(function ($stateProvider, $urlRouterProvider) {
                 // For any unmatched url, send to /route1
                 $urlRouterProvider.otherwise("/route1");
 
                 $stateProvider.state('route1', {
                     url: "/route1",
-                    template: "login.html"
+                    template: "<h1>Route 1</h1>"
+                }).state('route2', {
+                    url: "/route2",
+                    template: "<h1>Route 2</h1>"
                 });
             });
         }
-        ApplicationController.prototype.getApplication = function () {
-            return this.application;
+        ApplicationController.prototype.getAppModule = function () {
+            return this.appModuel;
         };
         return ApplicationController;
     })();

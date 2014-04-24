@@ -4,11 +4,11 @@
 
 export class ApplicationController
 {
-	constructor(private application:any)
+	constructor(private appModuel:ng.IModule)
 	{
 		console.log("Create ApplicationController");
 		
-		application.config(($stateProvider, $urlRouterProvider) => {  
+		appModuel.config(($stateProvider, $urlRouterProvider) => {  
       
 		  // For any unmatched url, send to /route1
 	      $urlRouterProvider.otherwise("/route1");
@@ -16,13 +16,17 @@ export class ApplicationController
 	      $stateProvider
 	        .state('route1', {
 	            url: "/route1",
-	            template: "login.html"
+	            template: "<h1>Route 1</h1>"
+	        })
+	        .state('route2', {
+	            url: "/route2",
+	            template: "<h1>Route 2</h1>"
 	        });
-	    });
+	    });	
 	}
 	
-	public getApplication():any
+	public getAppModule():any
 	{
-		return this.application;
+		return this.appModuel;
 	}
 }
