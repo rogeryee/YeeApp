@@ -1,23 +1,30 @@
 /// <reference path="lib/angular/angular.d.ts"/>
+/// <reference path="lib/angular-ui/angular-ui-router.d.ts"/>
 "use strict";
-define(["require", "exports"], function(require, exports) {
+define(["require", "exports", "scripts/app/controllers/loginController", "scripts/app/services/loginService"], function(require, exports, loginController, loginService) {
     var ApplicationController = (function () {
-        function ApplicationController(appModuel) {
-            this.appModuel = appModuel;
+        function ApplicationController(appModule) {
+            this.appModule = appModule;
             console.log("Create ApplicationController");
 
-            appModuel.config(function ($stateProvider, $urlRouterProvider) {
+            appModule.config(function ($stateProvider, $urlRouterProvider) {
                 // For any unmatched url, send to /route1
                 $urlRouterProvider.otherwise("/login");
 
                 $stateProvider.state('login', {
                     url: "/login",
                     templateUrl: "views/login.html"
+                }).state('main', {
+                    url: "/main",
+                    templateUrl: "views/main.html"
                 });
             });
+
+            appModule.service('loginService', loginService.LoginService);
+            appModule.controller("loginController", ["$scope", "$state", "loginService", loginController.LoginController]);
         }
         ApplicationController.prototype.getAppModule = function () {
-            return this.appModuel;
+            return this.appModule;
         };
         return ApplicationController;
     })();

@@ -1,14 +1,18 @@
 /// <reference path="lib/angular/angular.d.ts"/>
+/// <reference path="lib/angular-ui/angular-ui-router.d.ts"/>
 
 "use strict";
 
+import loginController = require("scripts/app/controllers/loginController");
+import loginService = require("scripts/app/services/loginService");
+
 export class ApplicationController
 {
-	constructor(private appModuel:ng.IModule)
+	constructor(private appModule:ng.IModule)
 	{
 		console.log("Create ApplicationController");
 		
-		appModuel.config(($stateProvider, $urlRouterProvider) => {  
+		appModule.config(($stateProvider, $urlRouterProvider) => {  
       
 		  // For any unmatched url, send to /route1
 	      $urlRouterProvider.otherwise("/login");
@@ -17,13 +21,22 @@ export class ApplicationController
 	        .state('login', {
 	            url: "/login",
 	            templateUrl: "views/login.html"
-//				template:"<h1>Here we go!!!</h1>"
+	        })
+			.state('main', {
+	            url: "/main",
+	            templateUrl: "views/main.html"
 	        })
 	    });	
+		
+		appModule.service('loginService', loginService.LoginService);
+		appModule.controller("loginController", ["$scope","$state","loginService", loginController.LoginController]);
+		
 	}
 	
 	public getAppModule():any
 	{
-		return this.appModuel;
+		return this.appModule;
 	}
 }
+
+
