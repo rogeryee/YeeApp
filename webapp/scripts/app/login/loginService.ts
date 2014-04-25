@@ -1,5 +1,5 @@
-/// <reference path="lib/angular/angular.d.ts"/>
-/// <reference path="lib/angular-ui/angular-ui-router.d.ts"/>
+/// <reference path="../lib/angular/angular.d.ts"/>
+/// <reference path="../lib/angular-ui/angular-ui-router.d.ts"/>
 
 export class LoginService
 {

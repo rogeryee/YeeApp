@@ -3,8 +3,8 @@
 
 "use strict";
 
-import loginController = require("scripts/app/controllers/loginController");
-import loginService = require("scripts/app/services/loginService");
+import loginController = require("scripts/app/login/loginController");
+import loginService = require("scripts/app/login/loginService");
 
 export class ApplicationController
 {
@@ -20,7 +20,7 @@ export class ApplicationController
 	      $stateProvider
 	        .state('login', {
 	            url: "/login",
-	            templateUrl: "views/login.html"
+	            templateUrl: "views/login/login.html"
 	        })
 			.state('main', {
 	            url: "/main",
@@ -30,7 +30,6 @@ export class ApplicationController
 		
 		appModule.service('loginService', loginService.LoginService);
 		appModule.controller("loginController", ["$scope","$state","loginService", loginController.LoginController]);
-		
 	}
 	
 	public getAppModule():any

@@ -30,7 +30,6 @@
 			function (domReady, ApplicationControllerModule) {
 		  		'use strict';
 		  		domReady(function() {
-		  			
 		  			var yeeApp = angular.module("YeeApp",["ui.router"]);
 					var appController = new ApplicationControllerModule.ApplicationController(yeeApp);
 					angular.bootstrap(document, ['YeeApp']);   
