@@ -1,0 +1,1 @@
+{"version":3,"file":"modules.js","sourceRoot":"","sources":["modules.ts"],"names":["ModuleBase","ModuleBase.constructor","ModuleBase.config","ModuleBase.getModuleName"],"mappings":"AAAA;IACA;QAECA;YAECC,IAAIA,CAACA,MAAMA,CAACA,CAACA;QACdA,CAACA;QAEDD,8BAAAA;QAGAE,CAACA;;QAEDF,2BAAAA;YAECG,OAAOA,aAAaA;QACrBA,CAACA;QACFH,kBAACA;IAADA,CAACA,IAAA;IAhBD,gCAgBC;GAAA"}

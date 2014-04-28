@@ -1,7 +1,7 @@
 /// <reference path="../lib/angular/angular.d.ts"/>
 /// <reference path="../lib/angular-ui/angular-ui-router.d.ts"/>
 
-import loginServiceModule = require("scripts/app/login/loginService");
+import loginServiceModule = require("modules/login/loginService");
 
 export class LoginController
 {

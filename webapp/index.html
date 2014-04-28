@@ -9,15 +9,16 @@
 	<div ui-view></div>
 	
 	<script src="scripts/dtkSDK/angular/angular.js"></script>
-	<script src="scripts/dtkSDK/angular/angular-ui-router.js"></script>
 	<script src="scripts/dtkSDK/requirejs/require.js"></script>
 	<script>
 		
+		// configure RequireJS
 		require.config({
 		  baseUrl: "scripts",
 		  paths: {
-		    angular: 'dtkSDK/angular/angular',
-		    domReady: 'dtkSDK/requirejs/domReady',
+		    requirejs: 'dtkSDK/requirejs',
+		    angular: 'dtkSDK/angular',
+		    modules: 'app/modules'
 		  },
 		  shim: {
 		    angular: {
@@ -27,13 +28,11 @@
 		});
 		
 		// Launch Application
-		require(['domReady','app/ApplicationController'],
-			function (domReady, ApplicationControllerModule,loginService,loginController) {
+		require(['app/Application','requirejs/domReady','angular/angular-ui-router'],
+			function (applicationModule, domReady) {
 		  		'use strict';
 		  		domReady(function() {
-		  			var yeeApp = angular.module("YeeApp",["ui.router"]);
-					var appController = new ApplicationControllerModule.ApplicationController(yeeApp);
-					angular.bootstrap(document, ['YeeApp']);   
+					new applicationModule.Application().start();
 		    	});
 		  	}
 		);
