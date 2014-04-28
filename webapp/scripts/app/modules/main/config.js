@@ -1,9 +1,10 @@
 "use strict";
-define(["require", "exports", "modules/login/loginController", "modules/login/loginService"], function(require, exports, loginController, loginService) {
+define(["require", "exports"], function(require, exports) {
+    // Main Module of the Application
     var Config = (function () {
         function Config(outerDependencies, moduleName) {
-            this.moduleName = "module.login";
-            this.internalDependencies = [];
+            this.moduleName = "YeeApp";
+            this.internalDependencies = ["ui.router"];
             this.outerDependencies = [];
             if (outerDependencies)
                 this.outerDependencies = outerDependencies;
@@ -19,17 +20,11 @@ define(["require", "exports", "modules/login/loginController", "modules/login/lo
                 // For any unmatched url, send to /route1
                 $urlRouterProvider.otherwise("/login");
 
-                $stateProvider.state('main', {
-                    url: "/main",
-                    templateUrl: "views/main.html"
+                $stateProvider.state('login', {
+                    url: "/login",
+                    templateUrl: "views/login/login.html"
                 });
             });
-
-            // Service Configuration
-            this.moduleInstance.service('loginService', loginService.LoginService);
-
-            // Controller Configuration
-            this.moduleInstance.controller("loginController", ["$scope", "$state", "loginService", loginController.LoginController]);
         };
 
         Config.prototype.getModuleName = function () {

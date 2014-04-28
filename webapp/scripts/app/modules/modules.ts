@@ -1,18 +1,34 @@
+/// <reference path="../lib/angular/angular.d.ts"/>
+/// <reference path="../lib/angular-ui/angular-ui-router.d.ts"/>
 
-export class ModuleBase
+export interface IModule
 {
-	constructor()
+	moduleName: string;
+	moduleInstance:ng.IModule;
+	
+	config(): void;
+}
+
+export class ModuleBase implements IModule
+{
+	public moduleName: string = "module.name";
+	
+	moduleInstance:ng.IModule;
+	internalDependencies:any[] = []; // Internal Module Dependencies
+	outerDependencies:any[]; // Outer Module Dependencies
+	
+	constructor(outerDependencies:any[])
 	{
-		this.config();
+		this.outerDependencies = outerDependencies;
 	}
 
 	config(): void
 	{
-	
+		this.moduleInstance = angular.module(this.moduleName, this.internalDependencies.concat(this.outerDependencies));
 	}
 
-	public static getModuleName(): string
+	public getModuleName(): string
 	{
-		return "Module_Name";
+		return this.moduleName;
 	}
 }

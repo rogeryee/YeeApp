@@ -3,11 +3,13 @@
 
 "use strict";
 
+import mainModule = require("modules/main/config");
 import loginModule = require("modules/login/config");
+
 
 export class Application
 {
-	private dependencies:any[] = ["ui.router"];
+	private dependencies:any[] = [];
 	
 	constructor()
 	{
@@ -17,24 +19,15 @@ export class Application
 		
 	private appConfig():void
 	{
-		var yeeApp = angular.module("YeeApp",this.dependencies);
-		yeeApp.config(($stateProvider, $urlRouterProvider) => {  
-      
-		  // For any unmatched url, send to /route1
-	      $urlRouterProvider.otherwise("/login");
-	      
-	      $stateProvider
-	        .state('login', {
-	            url: "/login",
-	            templateUrl: "views/login/login.html"
-	        })
-	    });	
+		var main = new mainModule.Config(this.dependencies);
+		main.config();
 	}
 	
 	private modulesConfig():void
 	{
-		new loginModule.Config()
-		this.dependencies.push(loginModule.Config.getModuleName());
+		var mod = new loginModule.Config();
+		mod.config();
+		this.dependencies.push(mod.getModuleName());
 	}
 	
 	private start():void

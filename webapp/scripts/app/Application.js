@@ -1,29 +1,22 @@
 /// <reference path="lib/angular/angular.d.ts"/>
 /// <reference path="lib/angular-ui/angular-ui-router.d.ts"/>
 "use strict";
-define(["require", "exports", "modules/login/config"], function(require, exports, loginModule) {
+define(["require", "exports", "modules/main/config", "modules/login/config"], function(require, exports, mainModule, loginModule) {
     var Application = (function () {
         function Application() {
-            this.dependencies = ["ui.router"];
+            this.dependencies = [];
             this.modulesConfig();
             this.appConfig();
         }
         Application.prototype.appConfig = function () {
-            var yeeApp = angular.module("YeeApp", this.dependencies);
-            yeeApp.config(function ($stateProvider, $urlRouterProvider) {
-                // For any unmatched url, send to /route1
-                $urlRouterProvider.otherwise("/login");
-
-                $stateProvider.state('login', {
-                    url: "/login",
-                    templateUrl: "views/login/login.html"
-                });
-            });
+            var main = new mainModule.Config(this.dependencies);
+            main.config();
         };
 
         Application.prototype.modulesConfig = function () {
-            new loginModule.Config();
-            this.dependencies.push(loginModule.Config.getModuleName());
+            var mod = new loginModule.Config();
+            mod.config();
+            this.dependencies.push(mod.getModuleName());
         };
 
         Application.prototype.start = function () {
