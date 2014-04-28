@@ -1,7 +1,7 @@
 /// <reference path="lib/angular/angular.d.ts"/>
 /// <reference path="lib/angular-ui/angular-ui-router.d.ts"/>
 "use strict";
-define(["require", "exports", "scripts/app/login/loginController", "scripts/app/login/loginService"], function(require, exports, loginController, loginService) {
+define(["require", "exports", "app/login/loginController", "app/login/loginService"], function(require, exports, loginController, loginService) {
     var ApplicationController = (function () {
         function ApplicationController(appModule) {
             this.appModule = appModule;

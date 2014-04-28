@@ -14,9 +14,10 @@
 	<script>
 		
 		require.config({
+		  baseUrl: "scripts",
 		  paths: {
-		    angular: 'scripts/dtkSDK/angular/angular',
-		    domReady: 'scripts/dtkSDK/requirejs/domReady'
+		    angular: 'dtkSDK/angular/angular',
+		    domReady: 'dtkSDK/requirejs/domReady',
 		  },
 		  shim: {
 		    angular: {
@@ -26,8 +27,8 @@
 		});
 		
 		// Launch Application
-		require(['domReady','scripts/app/ApplicationController'],
-			function (domReady, ApplicationControllerModule) {
+		require(['domReady','app/ApplicationController'],
+			function (domReady, ApplicationControllerModule,loginService,loginController) {
 		  		'use strict';
 		  		domReady(function() {
 		  			var yeeApp = angular.module("YeeApp",["ui.router"]);

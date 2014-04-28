@@ -3,8 +3,8 @@
 
 "use strict";
 
-import loginController = require("scripts/app/login/loginController");
-import loginService = require("scripts/app/login/loginService");
+import loginController = require("app/login/loginController");
+import loginService = require("app/login/loginService");
 
 export class ApplicationController
 {
